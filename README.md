@@ -1,5 +1,5 @@
 # Smart Style Switcher
-Switch to an existing test style if attributes matches.
+Switch to an existing Shared Text Style if the attributes of the text layers matches.
 
 ## Install
 Download and double click in smart-style-switcher.sketchplugin
