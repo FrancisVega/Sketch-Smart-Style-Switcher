@@ -4,6 +4,9 @@ Switch to an existing Shared Text Style if the attributes of the text layers mat
 ## Install
 Download and double click in smart-style-switcher.sketchplugin
 
+## Demo
+https://vimeo.com/257983214
+
 ## How to use
 1 - Change some text attributes, for example alignment.
 
