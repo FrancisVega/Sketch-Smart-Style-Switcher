@@ -1,7 +1,7 @@
 {
     "name": "Smart Style Switcher",
     "author": "Francis Vega",
-    "description": "Switch to an existing test style if attributes matches",
+    "description": "Switch to an existing test style if changed attributes matches",
     "homepage": "www.inartx.com",
     "authorEmail": "hisconer@gmail.com",
     "compatibleVersion": "49",
