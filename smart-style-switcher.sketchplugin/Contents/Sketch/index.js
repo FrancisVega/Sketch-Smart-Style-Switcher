@@ -102,7 +102,7 @@ var onRun = function(context) {
       pasteInstanceSharedStyle(layer, MSSharedStyle);
       msg(`🤟 Switched to ${MSSharedStyle.name()}`)
     } else {
-      msg(`😱 Text properties doen't match any Style`);
+      msg(`😱 Text properties doesn't match any Style`);
     }
   });
 
