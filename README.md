@@ -13,3 +13,11 @@ https://vimeo.com/257983214
 2 - Execute the plugin.
 
 3 - Sketch will apply an existing text style if find one that matches the new alignment.
+
+## To do
+- Auto-Switch
+- Support for
+ - Vertical alignment
+ - Layer opacity
+ - Blending mode
+ - All layer style: Fills, borders, shadows, inner shadows and blur.
