@@ -16,8 +16,8 @@ https://vimeo.com/257983214
 
 ## To do
 - Auto-Switch
-- Support for
- - Vertical alignment
- - Layer opacity
- - Blending mode
- - All layer style: Fills, borders, shadows, inner shadows and blur.
+- Support
+  - Vertical alignment
+  - Layer opacity
+  - Blending mode
+  - All layer style: Fills, borders, shadows, inner shadows and blur.
