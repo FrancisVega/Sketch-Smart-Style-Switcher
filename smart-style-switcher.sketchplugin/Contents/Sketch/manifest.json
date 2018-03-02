@@ -1,7 +1,7 @@
 {
     "name": "Smart Style Switcher",
     "author": "Francis Vega",
-    "description": "Switch to an existing test style if changed attributes matches",
+    "description": "Switch to an existing Shared Text Style if the attributes of the text layers matches.",
     "homepage": "www.inartx.com",
     "authorEmail": "hisconer@gmail.com",
     "compatibleVersion": "49",
@@ -11,7 +11,9 @@
         {
             "script": "index.js",
             "name": "Smart Style Switcher",
-            "handlers": { "run": "onRun" },
+            "handlers": {
+                "run": "onRun"
+            },
             "identifier": "SSS",
             "shortcut": "ctrl option u"
         }

@@ -6,8 +6,11 @@
 // strinke: layer.styleAttributes()["NSStrikethrough"],
 // underline: layer.styleAttributes()["NSUnderline"]
 
-var onRun = function(context) {
+var sayHi = function(context) {
+  log("Hi!");
+};
 
+var onRun = function(context) {
   function pasteInstanceSharedStyle(layer, sharedStyle) {
     return (layer.style = sharedStyle.newInstance());
   }
@@ -100,12 +103,11 @@ var onRun = function(context) {
     if (findMSSharedStyleFromLayer != null) {
       const MSSharedStyle = findMSSharedStyleFromLayer;
       pasteInstanceSharedStyle(layer, MSSharedStyle);
-      msg(`🤟 Switched to ${MSSharedStyle.name()}`)
+      msg(`🤟 Switched to ${MSSharedStyle.name()}`);
     } else {
       msg(`😱 Text properties doesn't match any Style`);
     }
   });
 
   context.document.reloadInspector();
-
 };
