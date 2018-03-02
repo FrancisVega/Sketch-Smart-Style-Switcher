@@ -1,23 +1,26 @@
 # Smart Style Switcher
-Switch to an existing Shared Text Style if the attributes of the text layers matches.
-
-## Install
-Download and double click in smart-style-switcher.sketchplugin
+Switch to an existing Shared Text Style if the attributes of the text layers matches with some Shared Text Style.
 
 ## Demo
 https://vimeo.com/257983214
 
 ## How to use
-1 - Change some text attributes, for example alignment.
+- Change some Text Layer Style attributes, for example alignment.
+- Execute the plugin.
+- Sketch will apply an existing Shared Text Style if find one that matches the new alignment.
 
-2 - Execute the plugin.
-
-3 - Sketch will apply an existing text style if find one that matches the new alignment.
+## Supported attributes
+- Typeface
+- Weight
+- Color
+- Size
+- Alignments
+- Spacing: character, Line and Paragraph
 
 ## To do
 - Auto-Switch
 - Support
   - Vertical alignment
-  - Layer opacity
+  - Opacity
   - Blending mode
   - All layer style: Fills, borders, shadows, inner shadows and blur.
