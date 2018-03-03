@@ -6,10 +6,6 @@
 // strinke: layer.styleAttributes()["NSStrikethrough"],
 // underline: layer.styleAttributes()["NSUnderline"]
 
-var sayHi = function(context) {
-  log("Hi!");
-};
-
 var onRun = function(context) {
   function pasteInstanceSharedStyle(layer, sharedStyle) {
     return (layer.style = sharedStyle.newInstance());
@@ -37,12 +33,17 @@ var onRun = function(context) {
     return true;
   }
 
+  function checkIfStyleHasChanged(layer) {
+    const a = listTextLayerAttrs(layer);
+    const b = listTextLayerAttrsFromStyle(layer.sharedObject());
+    return !compareObjects(a, b);
+  }
+
   function getAllTextSharedStyles() {
     return context.document
       .documentData()
       .layerTextStyles()
-      .objects()
-      .slice();
+      .objects();
   }
 
   function listTextLayerAttrs(layer) {
@@ -85,27 +86,28 @@ var onRun = function(context) {
 
   // Main
 
-  const SEL = context.selection;
-  const ALL_LAYERS_STYLE = getAllTextSharedStyles();
+  const selectedLayers = context.selection;
+  const documentLayerSharedStyles = getAllTextSharedStyles();
 
-  SEL.forEach(function(layer) {
-    const layerStyle = listTextLayerAttrs(layer);
+  selectedLayers.forEach(function(layer) {
+    if (checkIfStyleHasChanged(layer)) {
+      const layerStyle = listTextLayerAttrs(layer);
+      let findMSSharedStyleFromLayer = null;
+      documentLayerSharedStyles.forEach(function(style) {
+        const a = listTextLayerAttrsFromStyle(style);
+        if (compareObjects(a, layerStyle)) {
+          findMSSharedStyleFromLayer = style;
+          return true;
+        }
+      });
 
-    let findMSSharedStyleFromLayer = null;
-    ALL_LAYERS_STYLE.forEach(function(style) {
-      const a = listTextLayerAttrsFromStyle(style);
-      if (compareObjects(a, layerStyle)) {
-        findMSSharedStyleFromLayer = style;
-        return true;
+      if (findMSSharedStyleFromLayer != null) {
+        const MSSharedStyle = findMSSharedStyleFromLayer;
+        pasteInstanceSharedStyle(layer, MSSharedStyle);
+        msg(`🤟 Switched to ${MSSharedStyle.name()}`);
+      } else {
+        msg(`😱 Text properties doesn't match any Style`);
       }
-    });
-
-    if (findMSSharedStyleFromLayer != null) {
-      const MSSharedStyle = findMSSharedStyleFromLayer;
-      pasteInstanceSharedStyle(layer, MSSharedStyle);
-      msg(`🤟 Switched to ${MSSharedStyle.name()}`);
-    } else {
-      msg(`😱 Text properties doesn't match any Style`);
     }
   });
 
