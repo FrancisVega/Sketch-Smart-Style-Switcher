@@ -15,12 +15,13 @@ https://vimeo.com/257983214
 - Color
 - Size
 - Alignments
+- Vertical alignment
 - Spacing: character, Line and Paragraph
+- Text Transform
 
 ## To do
 - Auto-Switch
 - Support
-  - Vertical alignment
   - Opacity
   - Blending mode
   - All layer style: Fills, borders, shadows, inner shadows and blur.
