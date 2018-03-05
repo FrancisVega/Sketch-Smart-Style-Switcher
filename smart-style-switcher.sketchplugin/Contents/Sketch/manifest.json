@@ -4,8 +4,8 @@
   "description": "Switch to an existing Shared Text Style if the attributes of the text layers matches.",
   "homepage": "www.inartx.com",
   "authorEmail": "hisconer@gmail.com",
-  "compatibleVersion": "49",
-  "bundleVersion": 1,
+  "compatibleVersion": "48.2",
+  "bundleVersion": 1.1,
   "identifier": "sketch.smart-style-switcher",
   "commands": [
     {
