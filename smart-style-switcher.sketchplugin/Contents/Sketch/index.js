@@ -48,6 +48,14 @@ var onRun = function(context) {
 
   function listTextLayerAttrs(layer) {
     const attrs = layer.attributedString().treeAsDictionary().value.attributes[0];
+
+    let tt;
+    try {
+        tt = layer.style().textStyle().encodedAttributes().MSAttributedStringTextTransformAttribute + ""
+    } catch(error) {
+        tt = null;
+    } 
+
     return {
       color: attrs.MSAttributedStringColorAttribute.value + "",
       nsfont: attrs.NSFont.attributes.NSFontNameAttribute + "",
@@ -57,7 +65,9 @@ var onRun = function(context) {
       kerning: attrs.NSKern + "",
       alignment: attrs.NSParagraphStyle.style.alignment + "",
       lineHeight: attrs.NSParagraphStyle.style.maximumLineHeight + "",
-      parapgrah: attrs.NSParagraphStyle.style.paragraphSpacing + ""
+      parapgrah: attrs.NSParagraphStyle.style.paragraphSpacing + "",
+      va: layer.style().textStyle().verticalAlignment() + "",
+      tt: tt
     };
   }
 
@@ -71,6 +81,14 @@ var onRun = function(context) {
     const nsfont = attrs.NSFont;
     const nsparagraph = attrs.NSParagraphStyle;
 
+    let tt;
+    try {
+        tt = layerStyle.value().textStyle().encodedAttributes().MSAttributedStringTextTransformAttribute + ""
+    }
+    catch(error) {
+        tt = null;
+    } 
+
     return {
       color: attrs.MSAttributedStringColorAttribute.value + "",
       nsfont: nsfont.attributes.NSFontNameAttribute + "",
@@ -80,7 +98,9 @@ var onRun = function(context) {
       kerning: attrs.NSKern + "",
       alignment: nsparagraph.style.alignment + "",
       lineHeight: nsparagraph.style.maximumLineHeight + "",
-      parapgrah: nsparagraph.style.paragraphSpacing + ""
+      parapgrah: nsparagraph.style.paragraphSpacing + "",
+      va: layerStyle.value().textStyle().verticalAlignment() + "",
+      tt: tt
     };
   }
 
@@ -90,9 +110,11 @@ var onRun = function(context) {
   const documentLayerSharedStyles = getAllTextSharedStyles();
 
   selectedLayers.forEach(function(layer) {
-    if (checkIfStyleHasChanged(layer)) {
+
       const layerStyle = listTextLayerAttrs(layer);
+
       let findMSSharedStyleFromLayer = null;
+
       documentLayerSharedStyles.forEach(function(style) {
         const a = listTextLayerAttrsFromStyle(style);
         if (compareObjects(a, layerStyle)) {
@@ -108,8 +130,9 @@ var onRun = function(context) {
       } else {
         msg(`😱 Text properties doesn't match any Style`);
       }
-    }
+
   });
 
   context.document.reloadInspector();
+
 };
