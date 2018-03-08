@@ -59,8 +59,16 @@ function listTextLayerAttrs(layer) {
     tt = null;
   }
 
+
+  let cc;
+  try {
+    cc = attrs.MSAttributedStringColorAttribute.value + ""
+  } catch (error) {
+    cc = null;
+  }
+
   return {
-    color: attrs.MSAttributedStringColorAttribute.value + "",
+    color: cc,
     nsfont: attrs.NSFont.attributes.NSFontNameAttribute + "",
     fontSize: attrs.NSFont.attributes.NSFontSizeAttribute + "",
     family: attrs.NSFont.family + "",
@@ -79,6 +87,7 @@ function listTextLayerAttrs(layer) {
 }
 
 function listTextLayerAttrsFromStyle(layerStyle) {
+  log(layerStyle)
   const attrs = layerStyle
     .style()
     .primitiveTextStyle()
@@ -99,8 +108,15 @@ function listTextLayerAttrsFromStyle(layerStyle) {
     tt = null;
   }
 
+  let cc;
+  try {
+    cc = attrs.MSAttributedStringColorAttribute.value + ""
+  } catch (error) {
+    cc = null;
+  }
+
   return {
-    color: attrs.MSAttributedStringColorAttribute.value + "",
+    color: cc,
     nsfont: nsfont.attributes.NSFontNameAttribute + "",
     fontSize: nsfont.attributes.NSFontSizeAttribute + "",
     family: nsfont.family + "",
@@ -126,6 +142,7 @@ function change(context) {
     if (checkIfStyleHasChanged(layer)) {
       const layerStyle = listTextLayerAttrs(layer);
       let findMSSharedStyleFromLayer = null;
+
       documentLayerSharedStyles.forEach(function(style) {
         const a = listTextLayerAttrsFromStyle(style);
         if (compareObjects(a, layerStyle)) {
@@ -158,3 +175,4 @@ function search(context) {
     }
   });
 }
+
