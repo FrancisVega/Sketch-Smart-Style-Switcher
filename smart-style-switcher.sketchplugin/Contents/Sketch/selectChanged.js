@@ -121,28 +121,13 @@ var onRun = function(context) {
 
   // Main
 
-  const selectedLayers = context.selection;
-  const documentLayerSharedStyles = getAllTextSharedStyles();
+  const sel = context.selection;
 
-  selectedLayers.forEach(function(layer) {
-    const layerStyle = listTextLayerAttrs(layer);
-    let findMSSharedStyleFromLayer = null;
-    documentLayerSharedStyles.forEach(function(style) {
-      const a = listTextLayerAttrsFromStyle(style);
-      if (compareObjects(a, layerStyle)) {
-        findMSSharedStyleFromLayer = style;
-        return true;
-      }
-    });
-
-    if (findMSSharedStyleFromLayer != null) {
-      const MSSharedStyle = findMSSharedStyleFromLayer;
-      pasteInstanceSharedStyle(layer, MSSharedStyle);
-      msg(`🤟 Switched to ${MSSharedStyle.name()}`);
-    } else {
-      msg(`😱 Text properties doesn't match any Style`);
+  context.document.currentPage().select_byExpandingSelection(0, 0);
+  sel.forEach(layer => {
+    if (checkIfStyleHasChanged(layer)) {
+      log(layer.name());
+      layer.select_byExpandingSelection(true, true);
     }
   });
-
-  context.document.reloadInspector();
 };

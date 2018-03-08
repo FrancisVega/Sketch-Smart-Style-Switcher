@@ -1,7 +1,8 @@
 {
   "name": "Smart Style Switcher",
   "author": "Francis Vega",
-  "description": "Switch to an existing Shared Text Style if the attributes of the text layers matches.",
+  "description":
+    "Switch to an existing Shared Text Style if the attributes of the text layers matches.",
   "homepage": "www.inartx.com",
   "authorEmail": "hisconer@gmail.com",
   "compatibleVersion": "48.2",
@@ -16,13 +17,20 @@
       },
       "identifier": "SSS",
       "shortcut": "ctrl shift s"
+    },
+    {
+      "script": "selectChanged.js",
+      "name": "Smart Changed Style Seletor",
+      "handlers": {
+        "run": "onRun"
+      },
+      "identifier": "SCSS",
+      "shortcut": ""
     }
   ],
   "menu": {
     "title": "🦄 Smart Style Switcher",
-    "items": [
-      "SSS"
-    ]
+    "items": ["SSS", "SCSS"]
   },
   "version": "1.0"
 }
