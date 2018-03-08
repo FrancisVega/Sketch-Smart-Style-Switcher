@@ -123,22 +123,24 @@ function change(context) {
   const documentLayerSharedStyles = getAllTextSharedStyles(context);
 
   selectedLayers.forEach(function(layer) {
-    const layerStyle = listTextLayerAttrs(layer);
-    let findMSSharedStyleFromLayer = null;
-    documentLayerSharedStyles.forEach(function(style) {
-      const a = listTextLayerAttrsFromStyle(style);
-      if (compareObjects(a, layerStyle)) {
-        findMSSharedStyleFromLayer = style;
-        return true;
-      }
-    });
+    if (checkIfStyleHasChanged(layer)) {
+      const layerStyle = listTextLayerAttrs(layer);
+      let findMSSharedStyleFromLayer = null;
+      documentLayerSharedStyles.forEach(function(style) {
+        const a = listTextLayerAttrsFromStyle(style);
+        if (compareObjects(a, layerStyle)) {
+          findMSSharedStyleFromLayer = style;
+          return true;
+        }
+      });
 
-    if (findMSSharedStyleFromLayer != null) {
-      const MSSharedStyle = findMSSharedStyleFromLayer;
-      pasteInstanceSharedStyle(layer, MSSharedStyle);
-      msg(context, `🤟 Switched to ${MSSharedStyle.name()}`);
-    } else {
-      msg(context, `😱 Text properties doesn't match any Style`);
+      if (findMSSharedStyleFromLayer != null) {
+        const MSSharedStyle = findMSSharedStyleFromLayer;
+        pasteInstanceSharedStyle(layer, MSSharedStyle);
+        msg(context, `🤟 Switched to ${MSSharedStyle.name()}`);
+      } else {
+        msg(context, `😱 Text properties doesn't match any Style`);
+      }
     }
   });
 
