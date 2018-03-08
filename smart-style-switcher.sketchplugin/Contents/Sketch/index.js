@@ -119,8 +119,6 @@ function listTextLayerAttrsFromStyle(layerStyle) {
 }
 
 function change(context) {
-  log("OK");
-
   const selectedLayers = context.selection;
   const documentLayerSharedStyles = getAllTextSharedStyles(context);
 
@@ -151,8 +149,10 @@ function search(context) {
   const sel = context.selection;
   context.document.currentPage().select_byExpandingSelection(0, 0);
   sel.forEach(layer => {
-    if (checkIfStyleHasChanged(layer)) {
-      layer.select_byExpandingSelection(true, true);
+    if (layer.class() == "MSTextLayer") {
+      if (checkIfStyleHasChanged(layer)) {
+        layer.select_byExpandingSelection(true, true);
+      }
     }
   });
 }
