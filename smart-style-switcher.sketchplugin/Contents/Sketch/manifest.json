@@ -1,13 +1,15 @@
 {
   "name": "Smart Style Switcher",
   "author": "Francis Vega",
-  "description":
-    "Switch to an existing Shared Text Style if the attributes of the text layers matches.",
-  "homepage": "www.inartx.com",
+  "email": "hisconer@gmail.com",
   "authorEmail": "hisconer@gmail.com",
+  "description": "Switch to an existing Shared Text Style if the attributes of the text layers matches.",
+  "homepage": "www.inartx.com",
+  "version": "1.0",
   "compatibleVersion": "48.2",
   "bundleVersion": 1.2,
   "identifier": "sketch.smart-style-switcher",
+  "appcast":"https://raw.githubusercontent.com/FrancisVega/Sketch-Smart-Style-Switcher/master/appcast.xml",
   "commands": [
     {
       "script": "index.js",
@@ -31,6 +33,5 @@
   "menu": {
     "title": "🦄 Smart Style Switcher",
     "items": ["SSS", "SCSS"]
-  },
-  "version": "1.5"
+  }
 }
